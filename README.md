@@ -4,7 +4,7 @@ The Apple WKWebView implementation of [`webview_flutter`][1].
 
 ## Usage
 ![](2024-10-17_17-53-59.png)
-![](2024-10-17_17-54-08)
+![](2024-10-17_17-54-08.png)
 
 This package is [endorsed][2], which means you can simply use `webview_flutter`
 normally. This package will be automatically included in your app when you do,
