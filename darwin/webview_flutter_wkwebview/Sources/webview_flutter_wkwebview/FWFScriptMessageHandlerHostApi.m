@@ -63,11 +63,11 @@
 //}
 
 - (void)userContentController:(nonnull WKUserContentController *)userContentController didReceiveScriptMessage:(nonnull WKScriptMessage *)message replyHandler:(nonnull void (^)(id _Nullable, NSString * _Nullable))replyHandler {
-    NSLog(@"Obj-c replyHandler >>> %@ %@",message.name,message.body);
+    NSLog(@"%@ %@",message.name,message.body);
    
     id  value = [self handleJSMessage:message];
     replyHandler(value,nil);
-    NSLog(@"objc call js:  %@",value);
+    NSLog(@"replyHandler:  %@",value);
     [self.scriptMessageHandlerAPI didReceiveScriptMessageForHandler:self
                                               userContentController:userContentController
                                                             message:message
