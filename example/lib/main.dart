@@ -596,8 +596,9 @@ class SampleMenu extends StatelessWidget {
   }
 
   Future<void> _onLoadLocalFileExample() async {
-    final String pathToIndex = await _prepareLocalFile();
-    await webViewController.loadFile(pathToIndex);
+    await webViewController.loadFile("https://bing.com");
+    // final String pathToIndex = await _prepareLocalFile();
+    // await webViewController.loadFile(pathToIndex);
   }
 
   Future<void> _onLoadFlutterAssetExample() {
