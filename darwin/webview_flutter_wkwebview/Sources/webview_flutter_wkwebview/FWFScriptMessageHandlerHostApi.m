@@ -140,15 +140,12 @@ NSString *const AppFunctionForJSGetSysTraceId = @"getSysTraceId";
                 // 权限允许，保存图片
                 [self saveImage:image];
             } else {
-                NSLog(@"请在iPhone的“设置--隐私--相册”选项中，允许此App访问你的相册。");
             }
         }];
     } else if (authorizationStatus == PHAuthorizationStatusAuthorized) {
         // 如果权限已允许，直接保存图片
         [self saveImage:image];
     } else {
-        // 权限不允许，提示用户去设置中打开权限
-        NSLog(@"请在iPhone的“设置--隐私--相册”选项中，允许此App访问你的相册。");
     }
 }
 

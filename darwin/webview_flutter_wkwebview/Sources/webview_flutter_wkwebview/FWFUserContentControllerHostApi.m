@@ -42,7 +42,7 @@
       addScriptMessageHandler:(id<WKScriptMessageHandler>)[self.instanceManager
                                   instanceForIdentifier:handler]
                          name:name];*/
-    NSLog(@"addscript: %@",name);
+//    NSLog(@"addscript: %@",name);
     [[self userContentControllerForIdentifier:identifier] addScriptMessageHandlerWithReply:(id<WKScriptMessageHandlerWithReply>)[self.instanceManager
                                                                                                                instanceForIdentifier:handler] contentWorld:WKContentWorld.pageWorld name:name];
 }

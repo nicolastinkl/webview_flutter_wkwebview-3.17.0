@@ -1473,7 +1473,7 @@ class WKUserContentControllerHostApi {
       pigeonChannelCodec,
       binaryMessenger: __pigeon_binaryMessenger,
     );
-    print("addScriptMessageHandler : " + __pigeon_channelName + " " + name);
+    //print("addScriptMessageHandler : " + __pigeon_channelName + " " + name);
     final List<Object?>? __pigeon_replyList = await __pigeon_channel
         .send(<Object?>[identifier, handlerIdentifier, name]) as List<Object?>?;
     if (__pigeon_replyList == null) {
