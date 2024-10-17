@@ -1,0 +1,4 @@
+module webview_flutter_wkwebview {
+    umbrella "/Users/zeus/Documents/GitHub/webview_flutter_wkwebview_zeus/darwin/webview_flutter_wkwebview/Sources/webview_flutter_wkwebview/include"
+    export *
+}

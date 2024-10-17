@@ -1,0 +1,1 @@
+ /Users/zeus/Documents/GitHub/webview_flutter_wkwebview_zeus/example/.dart_tool/flutter_build/a6ec9211eb8088bce7ba46e4756f720e/native_assets.yaml: 
