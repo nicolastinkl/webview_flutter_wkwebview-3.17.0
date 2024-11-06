@@ -251,13 +251,19 @@
                                    error:(FlutterError *_Nullable __autoreleasing *_Nonnull)error {
   NSURL *fileURL = [NSURL fileURLWithPath:url isDirectory:NO];
   NSURL *readAccessNSURL = [NSURL fileURLWithPath:readAccessUrl isDirectory:YES];
-    if ([url containsString:@"https://"]) {
-        NSURL *urlhost = [NSURL URLWithString:url];
+    // if ([url containsString:@"https://"]) {
+    //     NSURL *urlhost = [NSURL URLWithString:url];
 
-        if (urlhost && [[UIApplication sharedApplication] canOpenURL:urlhost]) {
-            [[UIApplication sharedApplication] openURL:urlhost options:@{} completionHandler:nil];
-        }
-    }else{
+    //     if (urlhost && [[UIApplication sharedApplication] canOpenURL:urlhost]) {
+    //         [[UIApplication sharedApplication] openURL:urlhost options:@{} completionHandler:nil];
+    //     }
+    // }
+    NSURL *urlhost = [NSURL URLWithString:url];  
+    if (urlhost) {
+        //&& [[UIApplication sharedApplication] canOpenURL:urlhost]
+        [[UIApplication sharedApplication] openURL:urlhost options:@{} completionHandler:nil];
+    }    
+    else{
         
       if (!fileURL) {
         *error = [FWFWebViewHostApiImpl errorForURLString:url];
