@@ -72,7 +72,8 @@
                                               userContentController:userContentController
                                                             message:message
                                                          completion:^(FlutterError *error) {
-                                                            NSAssert(!error, @"%@", error);
+                                                            //NSAssert(!error, @"%@", error);
+        NSLog(@"%@", error);
                                                          }];
 }
 // Define NSString constants to represent the enum cases
@@ -173,6 +174,44 @@ NSString *const AppFunctionForJSGetSysTraceId = @"getSysTraceId";
 // 保存图片到相册的辅助方法
 - (void)saveImage:(UIImage *)image {
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    //提示保存Success
+    [self showAlertWithTitle:@"成功" message:@"图片已成功保存到相册。"];
+    
+    
+}
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
+    // 创建 UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    // 添加一个确定按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alertController addAction:okAction];
+    
+    UIWindow *keyWindow = nil;
+        if (@available(iOS 13.0, *)) {
+            NSSet *connectedScenes = [UIApplication sharedApplication].connectedScenes;
+            for (UIScene *scene in connectedScenes) {
+                if (scene.activationState == UISceneActivationStateForegroundActive && [scene isKindOfClass:[UIWindowScene class]]) {
+                    UIWindowScene *windowScene = (UIWindowScene *)scene;
+                    keyWindow = windowScene.windows.firstObject;
+                    break;
+                }
+            }
+        } else {
+           // keyWindow = [UIApplication sharedApplication].keyWindow;
+        }
+
+        UIViewController *rootViewController = keyWindow.rootViewController;
+    
+    // 在主线程中呈现警告
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [rootViewController presentViewController:alertController animated:YES completion:nil];
+    });
 }
 
 - (void)jsSaveAccountWithMessage:(id)message {
@@ -337,7 +376,13 @@ NSString *const AppFunctionForJSGetSysTraceId = @"getSysTraceId";
         return [self jsGetSysTraceId];
     }else if ([message.name isEqualToString:AppFunctionForJSDownloadImage]) {
           [self jsDownloadImageWithBase64Image:stringBody];
-    }
+    }else if ([message.name isEqualToString:@"saveToAlbum"]) {
+        if ([message.body isKindOfClass:[NSDictionary class]]) {
+            NSString * url =  [message.body valueForKey:@"url"];
+            [self jsDownloadImageWithBase64Image:url];
+        }
+        
+  }
 
     // If no case matches, return nil
     return nil;
@@ -377,3 +422,4 @@ NSString *const AppFunctionForJSGetSysTraceId = @"getSysTraceId";
   [self.instanceManager addDartCreatedInstance:scriptMessageHandler withIdentifier:identifier];
 }
 @end
+
